@@ -1,4 +1,5 @@
 # database.py
+import os
 from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.orm import declarative_base, sessionmaker
 
@@ -13,8 +14,16 @@ class User(Base):
     password_hash = Column(String)
     role = Column(String)
 
-# Crear el motor de la base de datos SQLite (se creará un archivo database.db)
-engine = create_engine('sqlite:///database.db')
+# --- NUEVO CÓDIGO ---
+# Calculamos la ruta exacta de la carpeta donde está este archivo
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+# Unimos esa ruta con el nombre de nuestro archivo de base de datos
+db_path = os.path.join(BASE_DIR, "database.db")
+
+# Le pasamos la ruta absoluta a SQLite (fíjate en las 3 barras /// y la variable)
+engine = create_engine(f'sqlite:///{db_path}')
+# --------------------
+
 SessionLocal = sessionmaker(bind=engine)
 
 def init_db():
