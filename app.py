@@ -92,4 +92,4 @@ def mostrar_panel_juan_manuel():
         
         # TARJETA ICFES
         with col1:
-            st.markdown('<div class="tarjeta-tarea">', unsafe_allow_html
+            st.markdown('<div class="tarjeta-tarea">', unsafe_allow_html)
